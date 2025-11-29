@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Café del Olimpo</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <h1 class="logo">Café del Olimpo</h1>
+
+    <div class="nav-links">
+      <a href="#inicio">Inicio</a>
+      <a href="#proyecto">El Proyecto</a>
+      <a href="#juego" class="jugar-btn">Jugar</a>
+    </div>
+  </nav>
+
+  <!-- INICIO -->
+  <section id="inicio" class="section inicio fade-in">
+    <p class="subtitulo">Aventura Gráfica Interactiva</p>
+
+    <h2 class="titulo titulo-centrado">
+      Bienvenido al <span>Café del Olimpo</span>
+    </h2>
+
+    <p class="descripcion">
+      El Café del Olimpo es un lugar suspendido entre mundos: un pequeño rincón cálido iluminado por luces ámbar,
+      donde el aroma del café se mezcla con el eco de historias antiguas. Aquí, viajeros de todos los planos
+      encuentran un respiro… incluidos los mismísimos dioses del panteón griego.
+    </p>
+
+
+    <div class="botones-inicio">
+      <a href="#juego" class="btn-primary">Jugar Ahora</a>
+      <a href="#proyecto" class="btn-secondary">Conocer el Proyecto</a>
+    </div>
+  </section>
+
+  <!-- PROYECTO -->
+  <section id="proyecto" class="section proyecto fade-in">
+    <h2 class="titulo-seccion titulo-centrado">Sobre el Proyecto</h2>
+
+
+    <p class="descripcion descripcion-ancha">
+      La narrativa, ilustraciones, diálogos y sistemas fueron construidos para generar una experiencia envolvente,
+      donde la mitología griega se combina con un ambiente moderno. La idea principal fue equilibrar humor,
+      misterio y una ambientación emocional centrada en la figura del barista como puente entre los mundos.
+    </p>
+
+    <div class="tarjeta tilt">
+      <img src="https://i1.sndcdn.com/avatars-qpyDSszlVnTkiYaI-MmpbFw-t1080x1080.jpg" class="perfil" />
+
+      <h3 class="nombre">Shiroth</h3>
+      <p class="texto">
+        El dev de esta experiencia
+      </p>
+
+      <a href="https://github.com/Shiroth-blip" target="_blank" class="btn-primary">Mi GitHub</a>
+    </div>
+  </section>
+
+  <!-- JUEGO -->
+  <section id="juego" class="section juego fade-in">
+    <h2 class="titulo-seccion titulo-centrado">Jugar en el Sitio</h2>
+
+    <p class="descripcion descripcion-ancha">
+      Aquí podés jugar directamente la aventura sin salir del sitio.  
+      Recomendamos usar auriculares y pantalla completa para disfrutar completamente de la atmósfera del Café del Olimpo.
+    </p>
+
+    <div class="game-container">
+      <iframe 
+        src="https://shiroth-blip.github.io/pmiw_/"
+        class="game-frame"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>Café del Olimpo — 2025 · Desarrollado por Shiroth</p>
+  </footer>
+
+  <!-- NAV + TILT SCRIPT -->
+  <script>
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    document.querySelectorAll('.tilt').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 25;
+        const rotateY = (centerX - x) / 25;
+
+        card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = `rotateX(0) rotateY(0)`;
+      });
+    });
+  </script>
+
+</body>
+</html>
